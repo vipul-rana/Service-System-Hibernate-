@@ -1,0 +1,111 @@
+-- MySQL dump 10.10
+--
+-- Host: localhost    Database: service
+-- ------------------------------------------------------
+-- Server version	5.0.24-community-nt
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `appointment`
+--
+
+DROP TABLE IF EXISTS `appointment`;
+CREATE TABLE `appointment` (
+  `appno` int(11) NOT NULL auto_increment,
+  `address` varchar(255) default NULL,
+  `date` varchar(255) default NULL,
+  `status` varchar(255) default NULL,
+  `time` varchar(255) default NULL,
+  `work` varchar(255) default NULL,
+  `workstatus` varchar(255) default NULL,
+  `uid` varchar(255) default NULL,
+  `wid` int(11) default NULL,
+  PRIMARY KEY  (`appno`),
+  KEY `FKA8155B9FE68B0F69` (`uid`),
+  KEY `FKA8155B9F6C9BE31E` (`wid`),
+  CONSTRAINT `FKA8155B9F6C9BE31E` FOREIGN KEY (`wid`) REFERENCES `workers` (`wid`),
+  CONSTRAINT `FKA8155B9FE68B0F69` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `appointment`
+--
+
+
+/*!40000 ALTER TABLE `appointment` DISABLE KEYS */;
+LOCK TABLES `appointment` WRITE;
+INSERT INTO `appointment` VALUES (2,'asd','0001-11-11','Request Cancelled','11:11','assd','---','tanmay@gmail.com',7),(3,'Indore','2021-03-08','Accepted','12:00','Washing Machine Repairing\r\n','Done','tanmay@gmail.com',7),(4,'Indore','2021-04-08','Declined','15:00','TV Repairing\r\n','---','tanmay@gmail.com',7),(5,'Indore','2021-05-08','Accepted','14:00','Refrigerator Repairing','Booking Cancelled','tanmay@gmail.com',7);
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `appointment` ENABLE KEYS */;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+  `uid` varchar(255) NOT NULL,
+  `name` varchar(255) default NULL,
+  `password` varchar(255) default NULL,
+  PRIMARY KEY  (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+LOCK TABLES `users` WRITE;
+INSERT INTO `users` VALUES ('aditya@gmail.com','Aditya Verma','12345'),('ajay@gmail.com','Ajay','12345'),('amanjeet@gmail.com','Amanjeet','12345'),('amit@gmail.com','Amit','12345'),('bhaskar@gmail.com','Bhaskar','12345'),('bhushan@gmail.com','Bhushan','12345'),('jay@gmail.com','Jay','12345'),('prem@gmail.com','Prem','12345'),('raj@gmail.com','Raj','12345'),('suresh@gmail.com','Suresh','12345'),('tanmay@gmail.com','Tanmay','12345'),('tez@gmail.com','Tez','12345'),('vijay@gmail.com','Vijay','12345'),('vikrant@gmail.com','Vikrant','12345'),('vinit@gmail.com','Vinit','12345');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+
+--
+-- Table structure for table `workers`
+--
+
+DROP TABLE IF EXISTS `workers`;
+CREATE TABLE `workers` (
+  `wid` int(11) NOT NULL auto_increment,
+  `address` varchar(255) default NULL,
+  `category` varchar(255) default NULL,
+  `charges` varchar(255) default NULL,
+  `contact` int(11) default NULL,
+  `email` varchar(255) default NULL,
+  `location` varchar(255) default NULL,
+  `services` varchar(255) default NULL,
+  `wname` varchar(255) default NULL,
+  PRIMARY KEY  (`wid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `workers`
+--
+
+
+/*!40000 ALTER TABLE `workers` DISABLE KEYS */;
+LOCK TABLES `workers` WRITE;
+INSERT INTO `workers` VALUES (7,'Bhavarkua','Electrician','205',1234,'vikrant@gmail.com','Indore','Electronics Repairing','Vikrant'),(8,'Kolar','Plumber','200',123456,'raj@gmail.com','Bhopal','Mechanic','Raj'),(9,'Vishnupuri Colony','Plumber','300',123456,'vijay@gmail.com','Indore','Plumbing','Vijay'),(10,'Habibganj','Electrician','250',123456,'jay@gmail.com','Bhopal','Electronic appliances repairing.','Jay'),(11,'Bholaram','Electrician','450',123456,'ajay@gmail.com','Indore','Electronic appliances repairing.','Ajay'),(12,'WARD NO. 1 HIMACHAL NAGAR WARASEONI','Electrician','300',123456,'vinit@gmail.com','BALAGHAT','Electronic appliances repairing.','Vinit'),(13,'WARD NO. 1 HIMACHAL NAGAR WARASEONI','Plumber','350',12345,'amanjeet@gmail.com','BALAGHAT','Plumbing','Amanjeet'),(14,'Khandwa Naka','Labourer','200',1234,'tez@gmail.com','Indore','Labour','Tez'),(15,'WARD NO. 1 HIMACHAL NAGAR WARASEONI','Mechanic','600',123456,'suresh@gmail.com','BALAGHAT','Automobile Repairing','Suresh'),(16,'WARD NO. 1 HIMACHAL NAGAR WARASEONI','Labourer','250',123456,'aditya@gmail.com','BALAGHAT','Labour','Aditya Verma'),(17,'Dewas','Labourer','300',123456,'tanmay@gmail.com','Dewas','Labour','Tanmay'),(18,'WARD NO. 1 HIMACHAL NAGAR WARASEONI','Transport','800',123456,'bhaskar@gmail.com','BALAGHAT','Transportation','Bhaskar'),(19,'Vijay Nagar','Transport','900',123456,'prem@gmail.com','Indore','Transportation','Prem'),(20,'MP Nagar','Transport','1000',123456,'bhushan@gmail.com','Bhopal','Transportation','Bhushan');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `workers` ENABLE KEYS */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
